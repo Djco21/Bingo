@@ -8,3 +8,7 @@ class Ball:
     
     def change_status(self, status):
         self.ischosen = status
+
+    def get_number(self):
+        c_number = int(''.join(map(str, self.number)))
+        return c_number
