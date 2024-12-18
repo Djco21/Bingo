@@ -1,3 +1,4 @@
+import pygame
 class Ball:
     def __init__(self, number, ischosen):
         self.number = (number,)
