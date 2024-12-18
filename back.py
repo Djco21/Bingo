@@ -1,10 +1,14 @@
 import classes
+import pygame
+import source
 from random import randint
 
 def start_game():
     list_numbers = []
-    for i in range (1, 99):
-        list_numbers.append(classes.Ball(int(i), False))
+    for j in range(11):
+        for k in range(11):
+            if j < 10 and k < 10 and j*10 + k > 0:
+                list_numbers.append(classes.Ball(int(j*10 + k), False, 40 + k*100, 40 + j*100))
         balls_tuple = tuple(list_numbers)
     return balls_tuple
 
@@ -34,6 +38,16 @@ def pick_random(list_numbers, list_chosen):
     else:
         choose_ball(list_numbers, list_chosen, r_number)
         return list_chosen
+
+def screen_config():
+    source.display.fill((0,0,0))
+    pygame.display.set_caption('Bingo DGSTIC')
+    pygame.draw.rect(source.display,(0,0,0), source.background)
+    pygame.draw.rect(source.display,(255,255,255), source.balls_area)
+    for i in source.balls_tuple:
+        i.draw(source.display)
+    pygame.display.update()
+
 
 '''chosen_balls = []
 

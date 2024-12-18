@@ -1,14 +1,20 @@
+import pygame
+pygame.init()
+
+import source
 import back
 import classes
-import pygame
 
-pygame.init()
 clock = pygame.time.Clock()
 FPS = 60
 
-while True:
+while source.running:
     clock.tick(FPS)
-    width, height = 1920, 1080
-    display = pygame.display.set_mode((width, height))
-    pygame.display.set_caption('Bingo DGSTIC')
-    display.fill((0,0,0))
+    
+    '''keys = pygame.key.get_pressed()
+    if keys[pygame.K_ESCAPE]:
+        pygame.quit()'''
+    source.balls_tuple = back.start_game()
+    back.screen_config()
+
+pygame.quit()
