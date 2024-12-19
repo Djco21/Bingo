@@ -5,12 +5,15 @@ from random import randint
 
 def start_game():
     list_numbers = []
+    list_buttons = []
+
+    list_buttons.append(classes.Button('Chamar Bola',1320,880))
     for j in range(11):
         for k in range(11):
             if j < 10 and k < 10 and j*10 + k > 0:
                 list_numbers.append(classes.Ball(int(j*10 + k), False, 40 + k*100, 40 + j*100))
         balls_tuple = tuple(list_numbers)
-    return balls_tuple
+    return balls_tuple, list_buttons
 
 def undo_last_action(list_chosen):
     list_chosen.pop(-1)
@@ -25,8 +28,7 @@ def choose_ball(list_numbers, list_chosen, number):
         list_chosen.append(number)
         list_chosen.sort()
         b_chosen = list_numbers[c_number]
-        b_chosen.change_status(True)
-        print(b_chosen)
+        b_chosen.change_status(True, source.green_ball_img)
         return list_chosen
 
 def pick_random(list_numbers, list_chosen):
@@ -41,11 +43,13 @@ def pick_random(list_numbers, list_chosen):
 
 def screen_config():
     source.display.fill((0,0,0))
-    pygame.display.set_caption('Bingo DGSTIC')
     pygame.draw.rect(source.display,(0,0,0), source.background)
     pygame.draw.rect(source.display,(255,255,255), source.balls_area)
+    
     for i in source.balls_tuple:
         i.draw(source.display)
+    for j in source.list_buttons:
+        j.draw(source.display)
     pygame.display.update()
 
 
